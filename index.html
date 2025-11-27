@@ -91,6 +91,64 @@
             font-size: 1.1rem;
         }
 
+        /* Welcome Page */
+        .welcome-container {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: var(--shadow-xl);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .welcome-title {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .welcome-text {
+            color: var(--neutral-600);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            text-align: left;
+            font-size: 1.05rem;
+        }
+
+        .welcome-start-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: var(--shadow-lg);
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .welcome-start-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .contact-info {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: var(--neutral-100);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--neutral-600);
+        }
+
         /* Progress Bar */
         .progress-container {
             background: white;
@@ -99,6 +157,11 @@
             margin-bottom: 2rem;
             box-shadow: var(--shadow-md);
             animation: fadeIn 0.6s ease-out 0.2s both;
+            display: none;
+        }
+
+        .progress-container.show {
+            display: block;
         }
 
         .progress-steps {
@@ -224,6 +287,29 @@
             line-height: 1.6;
         }
 
+        /* Current Hypothesis Display */
+        .current-hypothesis {
+            background: linear-gradient(135deg, #e8f5e9 0%, #e0f7fa 100%);
+            border-left: 4px solid var(--success);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .current-hypothesis-label {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .current-hypothesis-text {
+            color: var(--neutral-700);
+            font-style: italic;
+            line-height: 1.6;
+        }
+
         /* Form Elements */
         .form-group {
             margin-bottom: 1.5rem;
@@ -266,60 +352,43 @@
             line-height: 1.5;
         }
 
-        /* Idea Starters */
-        .idea-starters {
-            display: grid;
-            gap: 1rem;
+        .context-input {
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            border: 1px dashed var(--neutral-300);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            width: 100%;
+        }
+
+        /* Idea Starters Table */
+        .idea-starters-table {
             margin-bottom: 2rem;
+            background: var(--neutral-100);
+            border-radius: 12px;
+            padding: 1.5rem;
+            max-height: 500px;
+            overflow-y: auto;
         }
 
         .idea-category {
-            background: var(--neutral-100);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .idea-category:hover {
-            border-color: var(--primary-light);
-            box-shadow: var(--shadow-md);
-        }
-
-        .category-header {
-            padding: 1rem 1.25rem;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            color: white;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .category-header:hover {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
-        }
-
-        .category-icon {
-            transition: transform 0.3s ease;
-            font-size: 1.2rem;
-        }
-
-        .category-content {
-            padding: 1.25rem;
+            margin-bottom: 1.5rem;
             background: white;
-            display: none;
-            animation: slideDown 0.3s ease-out;
+            border-radius: 8px;
+            padding: 1rem;
+            border-left: 4px solid var(--primary);
         }
 
-        .category-content.active {
-            display: block;
+        .idea-category-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            font-size: 1.05rem;
         }
 
         .idea-list {
             list-style: none;
+            padding-left: 0;
         }
 
         .idea-list li {
@@ -328,108 +397,40 @@
             position: relative;
             color: var(--neutral-600);
             line-height: 1.5;
+            font-size: 0.95rem;
         }
 
         .idea-list li:before {
-            content: "→";
+            content: "•";
             position: absolute;
             left: 0;
             color: var(--primary-light);
             font-weight: bold;
         }
 
-        /* Checkboxes and Radio Buttons */
-        .checkbox-group,
-        .radio-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .checkbox-item,
-        .radio-item {
-            display: flex;
-            align-items: flex-start;
-            padding: 0.75rem;
+        /* Regional Goals Display */
+        .regional-goals-display {
             background: var(--neutral-100);
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .checkbox-item:hover,
-        .radio-item:hover {
-            background: white;
-            box-shadow: var(--shadow-sm);
-            transform: translateX(4px);
-        }
-
-        .checkbox-item input,
-        .radio-item input {
-            margin-right: 0.75rem;
-            margin-top: 0.25rem;
-            cursor: pointer;
-        }
-
-        .checkbox-item label,
-        .radio-item label {
-            cursor: pointer;
-            flex: 1;
-            line-height: 1.5;
-        }
-
-        /* Feasibility Check */
-        .feasibility-check {
-            background: linear-gradient(135deg, var(--neutral-100) 0%, #f0f9fa 100%);
-            padding: 1.5rem;
             border-radius: 12px;
-            margin: 1.5rem 0;
-            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            margin-top: 2rem;
         }
 
-        .feasibility-title {
+        .regional-goals-title {
             font-weight: 600;
             color: var(--primary);
             margin-bottom: 1rem;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
         }
 
-        .feasibility-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 0.75rem;
-            padding: 0.5rem;
+        .regional-goal-item {
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
             background: white;
-            border-radius: 8px;
-        }
-
-        .feasibility-item input {
-            margin-right: 0.75rem;
-        }
-
-        .feasibility-result {
-            margin-top: 1rem;
-            padding: 1rem;
-            border-radius: 8px;
-            font-weight: 500;
-            display: none;
-        }
-
-        .feasibility-result.show {
-            display: block;
-            animation: fadeIn 0.3s ease-out;
-        }
-
-        .feasibility-result.good {
-            background: rgba(76, 175, 80, 0.1);
-            color: var(--success);
-            border: 2px solid var(--success);
-        }
-
-        .feasibility-result.warning {
-            background: rgba(255, 193, 7, 0.1);
-            color: #F57C00;
-            border: 2px solid #FFC107;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: var(--neutral-600);
         }
 
         /* Metrics Section */
@@ -877,6 +878,36 @@
             margin-top: 0.25rem;
         }
 
+        /* Show/Update Hypothesis Button */
+        .update-hypothesis-btn {
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .update-hypothesis-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .synthesized-hypothesis {
+            background: rgba(0, 98, 111, 0.05);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .synthesized-hypothesis.show {
+            display: block;
+        }
+
         /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -991,8 +1022,26 @@
             <p class="subtitle">Portrait of a Teach Plus Educator - Design Sprint Tool</p>
         </div>
 
-        <!-- Progress Bar -->
-        <div class="progress-container">
+        <!-- Welcome Page -->
+        <div class="welcome-container" id="welcomePage">
+            <h2 class="welcome-title">Welcome to the PTPE Hypothesis Generation Tool</h2>
+            <div class="welcome-text">
+                <p>This is a thought exercise designed to help you become familiar with creating hypotheses using insights gained from the Portrait of a Teach Plus Educator (PTPE) Project.</p>
+                
+                <p>The intention is that by using this tool, we can ground our next phase in our Student Opportunity Mandate (SOM) and the Regional Student Outcome Goals with testable ideas and clear metrics that will pave the way for further next steps.</p>
+                
+                <p>This interactive guide will walk you through six steps to develop a comprehensive hypothesis that aligns with our organizational goals and can be tested in your region.</p>
+            </div>
+            
+            <button class="welcome-start-btn" onclick="startGuide()">Start Building Your Hypothesis</button>
+            
+            <div class="contact-info">
+                <strong>Questions?</strong> Please reach out to Yohan Chang for support and guidance.
+            </div>
+        </div>
+
+        <!-- Progress Bar (hidden initially) -->
+        <div class="progress-container" id="progressContainer">
             <div class="progress-steps">
                 <div class="progress-line">
                     <div class="progress-line-fill" id="progressFill"></div>
@@ -1024,8 +1073,8 @@
             </div>
         </div>
 
-        <!-- Main Content -->
-        <div class="main-content">
+        <!-- Main Content (hidden initially) -->
+        <div class="main-content" id="mainContent" style="display:none;">
             <!-- Step 1: Generate Idea -->
             <div class="step-content active" id="step1">
                 <h2 class="step-title">
@@ -1048,81 +1097,151 @@
                     </div>
                 </div>
 
-                <h3 class="form-label">Idea Starters (Click to expand):</h3>
-                <div class="idea-starters">
+                <h3 class="form-label">Idea Starters Based on Portrait:</h3>
+                <div class="idea-starters-table">
                     <div class="idea-category">
-                        <div class="category-header" onclick="toggleCategory('community')">
-                            <span>Community Connection Ideas</span>
-                            <span class="category-icon">▼</span>
-                        </div>
-                        <div class="category-content" id="community">
-                            <ul class="idea-list">
-                                <li>Require family/student input at specific program points</li>
-                                <li>Add community legitimacy assessments</li>
-                                <li>Create parent/student advisory structures</li>
-                                <li>Document community partnerships</li>
-                            </ul>
-                        </div>
+                        <div class="idea-category-title">1. Connector & Relationship Builder</div>
+                        <ul class="idea-list">
+                            <li>Require 3 family empathy interviews during programming to inform priorities</li>
+                            <li>Create parent/student advisory councils that meet monthly to review progress</li>
+                            <li>Partner with 2+ non-teacher stakeholders (ex. counselors, literacy coach, social worker, school principal) for each cohort</li>
+                            <li>Conduct structured listening sessions with 3 students and 3 parents during programming</li>
+                            <li>Document and present community partnership metrics at each convening</li>
+                        </ul>
                     </div>
 
                     <div class="idea-category">
-                        <div class="category-header" onclick="toggleCategory('collaboration')">
-                            <span>Cross-Functional Collaboration Ideas</span>
-                            <span class="category-icon">▼</span>
-                        </div>
-                        <div class="category-content" id="collaboration">
-                            <ul class="idea-list">
-                                <li>Partner with counselors/social workers</li>
-                                <li>Create cross-district learning exchanges</li>
-                                <li>Build implementation teams beyond teachers</li>
-                                <li>Establish peer observation networks</li>
-                            </ul>
-                        </div>
+                        <div class="idea-category-title">2. Community-Oriented</div>
+                        <ul class="idea-list">
+                            <li>Require participants to assess their "community legitimacy" through 360 feedback from families</li>
+                            <li>Include proximity-to-community scoring in selection rubrics</li>
+                            <li>Create community-based campaign plans/change projects aligned to regional student outcome goals with families as co-designers</li>
+                            <li>Track family attendance/engagement metrics at program events</li>
+                            <li>Develop "community voice amplification" protocols for policy testimony/showcase</li>
+                        </ul>
                     </div>
 
                     <div class="idea-category">
-                        <div class="category-header" onclick="toggleCategory('data')">
-                            <span>Data & Evidence Ideas</span>
-                            <span class="category-icon">▼</span>
-                        </div>
-                        <div class="category-content" id="data">
-                            <ul class="idea-list">
-                                <li>Add pre-assessments for key skills</li>
-                                <li>Create implementation scorecards</li>
-                                <li>Document bright spots systematically</li>
-                                <li>Track unintended consequences</li>
-                            </ul>
-                        </div>
+                        <div class="idea-category-title">3. Adaptive Learner</div>
+                        <ul class="idea-list">
+                            <li>Establish portfolio-style growth tracking system with self-assessment + peer observation</li>
+                            <li>Create innovation labs for testing new approaches before full implementation</li>
+                            <li>Require iteration documentation showing 3+ cycles of improvement</li>
+                            <li>Add "pivot protocols" when original strategies aren't working</li>
+                            <li>Implement monthly "failure celebration" sessions where X participants share learnings</li>
+                        </ul>
                     </div>
 
                     <div class="idea-category">
-                        <div class="category-header" onclick="toggleCategory('professional')">
-                            <span>Professional Learning Ideas</span>
-                            <span class="category-icon">▼</span>
-                        </div>
-                        <div class="category-content" id="professional">
-                            <ul class="idea-list">
-                                <li>Use alumni as program facilitators</li>
-                                <li>Create "implementation labs" for testing</li>
-                                <li>Add failure/learning protocols</li>
-                                <li>Establish celebration/recognition systems</li>
-                            </ul>
-                        </div>
+                        <div class="idea-category-title">4. Strategic Communicator</div>
+                        <ul class="idea-list">
+                            <li>Develop "translation labs" where participants practice explaining complex concepts to diverse audiences</li>
+                            <li>Design multimedia portfolio requirements documenting impact through video, data visualization, and narratives</li>
+                            <li>Establish "bridge builder" protocols for facilitating difficult conversations about equity and change</li>
+                            <li>Implement cross-context communication exchanges between rural, urban, and suburban educators</li>
+                        </ul>
                     </div>
 
                     <div class="idea-category">
-                        <div class="category-header" onclick="toggleCategory('policy')">
-                            <span>Policy-to-Practice Ideas</span>
-                            <span class="category-icon">▼</span>
-                        </div>
-                        <div class="category-content" id="policy">
-                            <ul class="idea-list">
-                                <li>Test existing policies before advocating new ones</li>
-                                <li>Document implementation gaps</li>
-                                <li>Create feedback loops from classroom to policy</li>
-                                <li>Track long-term impact of past wins</li>
-                            </ul>
-                        </div>
+                        <div class="idea-category-title">5. Analytical & Data-Driven</div>
+                        <ul class="idea-list">
+                            <li>Add pre-assessments for data analysis skills at program start</li>
+                            <li>Establish 'evidence of impact' routines aligned to regional student outcome goals</li>
+                            <li>Create local context mapping exercises analyzing school/district dynamics</li>
+                            <li>Build hypothesis-testing mindsets tracking what works, for whom, under what conditions</li>
+                        </ul>
+                    </div>
+
+                    <div class="idea-category">
+                        <div class="idea-category-title">6. Solutions-Oriented</div>
+                        <ul class="idea-list">
+                            <li>Develop "bright spot amplification" protocols to scale existing successful practices</li>
+                            <li>Establish cross-regional solution exchanges to accelerate learning across states</li>
+                            <li>Create "solutions sprints" where participants generate 5+ approaches to single problems</li>
+                            <li>Build "evidence to action" frameworks translating research into recommendations</li>
+                        </ul>
+                    </div>
+
+                    <div class="idea-category">
+                        <div class="idea-category-title">7. Instructional Excellence</div>
+                        <ul class="idea-list">
+                            <li>Require video documentation of classroom practice demonstrating excellent instruction</li>
+                            <li>Create peer observation networks across districts for practice sharing</li>
+                            <li>Document evidence-based practices that accelerate student growth</li>
+                            <li>Use alumni as program facilitators based on demonstrated excellence</li>
+                        </ul>
+                    </div>
+
+                    <div class="idea-category">
+                        <div class="idea-category-title">8. Systems Thinker</div>
+                        <ul class="idea-list">
+                            <li>Map interconnections between classroom, school, district, and state</li>
+                            <li>Create "line of sight" exercises connecting practices to regional goals</li>
+                            <li>Develop "managing up" protocols for aligning administrator priorities</li>
+                            <li>Track ripple effects showing classroom impact on regional outcomes</li>
+                        </ul>
+                    </div>
+
+                    <div class="idea-category">
+                        <div class="idea-category-title">9. Politically Savvy</div>
+                        <ul class="idea-list">
+                            <li>Practice engaging policymakers across political spectrum through simulations</li>
+                            <li>Create bipartisan coalition-building requirements</li>
+                            <li>Track policy window timing and readiness indicators</li>
+                            <li>Develop relationships with 3+ policymakers before proposing changes</li>
+                        </ul>
+                    </div>
+
+                    <div class="idea-category">
+                        <div class="idea-category-title">10. Culturally Responsive</div>
+                        <ul class="idea-list">
+                            <li>Require racial equity impact assessments for all priorities</li>
+                            <li>Partner with community cultural organizations</li>
+                            <li>Include bias identification exercises</li>
+                            <li>Track demographic representation in leadership and voice</li>
+                        </ul>
+                    </div>
+
+                    <div class="idea-category">
+                        <div class="idea-category-title">11. Authentic & Integrity-Driven</div>
+                        <ul class="idea-list">
+                            <li>Implement vulnerability circles where participants share struggles openly</li>
+                            <li>Add integrity checks for alignment between values and actions</li>
+                            <li>Document moments of "creative maladjustment" vs. status quo</li>
+                            <li>Establish peer accountability partnerships for maintaining standards</li>
+                        </ul>
+                    </div>
+
+                    <div class="idea-category">
+                        <div class="idea-category-title">12. Self-Directed</div>
+                        <ul class="idea-list">
+                            <li>Establish "agency indicators" measuring self-initiated opportunities</li>
+                            <li>Allow participants to design X% of their learning pathway</li>
+                            <li>Create self-paced training completion options</li>
+                            <li>Reduce required touchpoints for high-performing participants</li>
+                        </ul>
+                    </div>
+
+                    <div class="idea-category">
+                        <div class="idea-category-title">13. Knowledge-Grounded</div>
+                        <ul class="idea-list">
+                            <li>Require deep dives into 3+ research studies relevant to regional goals</li>
+                            <li>Create "policy mechanics" workshops on how systems work</li>
+                            <li>Partner with university researchers for evidence reviews</li>
+                            <li>Add content knowledge assessments for priority areas</li>
+                            <li>Build resource libraries of best practices by topic area</li>
+                        </ul>
+                    </div>
+
+                    <div class="idea-category">
+                        <div class="idea-category-title">14. Credible & Trusted</div>
+                        <ul class="idea-list">
+                            <li>Document "trust indicators" from colleague and family feedback</li>
+                            <li>Require excellence verification through classroom observations</li>
+                            <li>Track gravitas metrics through influence on decisions</li>
+                            <li>Include peer selection/nomination in recruitment process</li>
+                            <li>Measure sustained relationships beyond programming period</li>
+                        </ul>
                     </div>
                 </div>
 
@@ -1146,6 +1265,11 @@
                 <p class="step-description">
                     Make your hypothesis specific and actionable by answering these focusing questions.
                 </p>
+
+                <div class="current-hypothesis" id="step2CurrentIdea" style="display:none;">
+                    <div class="current-hypothesis-label">Your Idea from Step 1:</div>
+                    <div class="current-hypothesis-text" id="step2IdeaText"></div>
+                </div>
 
                 <button class="example-btn" onclick="toggleExample('example2')">
                     💡 Show Example
@@ -1171,7 +1295,7 @@
 
                 <div class="form-group">
                     <label class="form-label">WHEN in the program will this happen?</label>
-                    <input type="text" class="form-input" id="when" placeholder="e.g., During selection, Specific module(s), Throughout programming">
+                    <input type="text" class="form-input" id="when" placeholder="e.g., During selection, Specific module(s), Throughout programming, Post-programming as alumni">
                 </div>
 
                 <div class="form-group">
@@ -1184,11 +1308,14 @@
                         <option value="newStaff">Requires new staff time</option>
                         <option value="existing">Uses existing structures</option>
                     </select>
+                    <input type="text" class="context-input" id="resourceContext" placeholder="Additional context about resources (e.g., 'No cost but requires extra participant time')">
                 </div>
 
-                <div class="form-group">
-                    <label class="form-label">Hypothesis with Specific Details from Step 1:</label>
-                    <textarea class="form-textarea" id="refinedHypothesis" placeholder="Build your hypothesis with specific details - During [specific time], [specific number] of [specific participants] will [specific action from Step 1] using [specific tool/method]"></textarea>
+                <button class="update-hypothesis-btn" onclick="updateStep2Hypothesis()">Show Me the Updated Hypothesis</button>
+                
+                <div class="synthesized-hypothesis" id="step2Synthesis">
+                    <div class="form-label">Your Updated Hypothesis (Building on Step 1):</div>
+                    <div id="synthesizedText" style="margin-top: 0.5rem; color: var(--neutral-700); line-height: 1.6;"></div>
                 </div>
 
                 <div class="navigation">
@@ -1206,6 +1333,11 @@
                 <p class="step-description">
                     Choose 2-3 measurable outcomes that would prove your hypothesis works.
                 </p>
+
+                <div class="current-hypothesis" id="step3CurrentHypothesis" style="display:none;">
+                    <div class="current-hypothesis-label">Your Hypothesis So Far:</div>
+                    <div class="current-hypothesis-text" id="step3HypothesisText"></div>
+                </div>
 
                 <button class="example-btn" onclick="toggleExample('example3')">
                     💡 Show Example
@@ -1289,33 +1421,22 @@
                             <input type="text" class="other-metric-input" placeholder="Other medium-term metric..." id="mediumOther">
                         </div>
                     </div>
+                </div>
 
-                    <div class="metric-category">
-                        <h4 class="metric-category-title">Impact Metrics (Student Outcomes)</h4>
-                        <div class="metric-options">
-                            <div class="metric-option">
-                                <input type="checkbox" id="studentAchievement" value="Student achievement data" onchange="suggestMetricValues('studentAchievement', 'Below target', 'Meeting target')">
-                                <label for="studentAchievement">Student achievement data</label>
-                            </div>
-                            <div class="metric-option">
-                                <input type="checkbox" id="collegeReady" value="College/career readiness indicators" onchange="suggestMetricValues('collegeReady', '45%', '70%')">
-                                <label for="collegeReady">College/career readiness indicators</label>
-                            </div>
-                            <div class="metric-option">
-                                <input type="checkbox" id="familyEngagement" value="Family engagement increases" onchange="suggestMetricValues('familyEngagement', '2x/year', '6x/year')">
-                                <label for="familyEngagement">Family engagement increases</label>
-                            </div>
-                            <div class="metric-option">
-                                <input type="checkbox" id="teacherRetention" value="Teacher retention rates" onchange="suggestMetricValues('teacherRetention', '70%', '90%')">
-                                <label for="teacherRetention">Teacher retention rates</label>
-                            </div>
-                            <div class="metric-option">
-                                <input type="checkbox" id="systemsChange" value="Systems-level changes" onchange="suggestMetricValues('systemsChange', '0', '3+ policies')">
-                                <label for="systemsChange">Systems-level changes</label>
-                            </div>
-                            <input type="text" class="other-metric-input" placeholder="Other impact metric..." id="impactOther">
-                        </div>
-                    </div>
+                <div class="regional-goals-display">
+                    <h3 class="regional-goals-title">Ultimate Impact Metrics Aligned to Regional Student Outcome Goals:</h3>
+                    <div class="regional-goal-item">• Improved academic outcomes for English Learners (CA)</div>
+                    <div class="regional-goal-item">• Points gained on 4th grade NAEP reading assessment (IN, PA)</div>
+                    <div class="regional-goal-item">• Points gained on 8th grade NAEP reading assessment (IN)</div>
+                    <div class="regional-goal-item">• College and career readiness rate increases (MS, TX)</div>
+                    <div class="regional-goal-item">• Postsecondary credential attainment within 6 years (TX)</div>
+                    <div class="regional-goal-item">• Access to postsecondary workforce opportunities (CO, MI)</div>
+                    <div class="regional-goal-item">• Dual enrollment and CTE participation rates (MI, NM)</div>
+                    <div class="regional-goal-item">• Chronic absenteeism reduction (NM)</div>
+                    <div class="regional-goal-item">• Growth in 3rd grade literacy (IL)</div>
+                    <div class="regional-goal-item">• Growth in 8th grade math (IL)</div>
+                    <div class="regional-goal-item">• High school graduation rates (IL)</div>
+                    <div class="regional-goal-item">• 8th grade reading proficiency rates (MA)</div>
                 </div>
 
                 <div class="selected-metrics">
@@ -1324,20 +1445,8 @@
                         <div style="font-weight: 600; color: var(--primary); margin-bottom: 0.5rem;">Auto-populated suggestions (adjust as needed):</div>
                         <div id="metricSuggestions"></div>
                     </div>
-                    <div class="metric-input-row">
-                        <label>Metric 1:</label>
-                        <input type="text" class="metric-value-input" placeholder="Baseline" id="metric1Baseline">
-                        <input type="text" class="metric-value-input" placeholder="Target" id="metric1Target">
-                    </div>
-                    <div class="metric-input-row">
-                        <label>Metric 2:</label>
-                        <input type="text" class="metric-value-input" placeholder="Baseline" id="metric2Baseline">
-                        <input type="text" class="metric-value-input" placeholder="Target" id="metric2Target">
-                    </div>
-                    <div class="metric-input-row">
-                        <label>Metric 3:</label>
-                        <input type="text" class="metric-value-input" placeholder="Baseline" id="metric3Baseline">
-                        <input type="text" class="metric-value-input" placeholder="Target" id="metric3Target">
+                    <div id="metricsInputContainer">
+                        <!-- Metrics will be dynamically added here -->
                     </div>
                     <div class="metric-disclaimer">
                         Note: If baseline metrics are not currently available, these numbers can be adjusted during the pilot planning phase.
@@ -1374,30 +1483,30 @@
 
                 <div class="form-group">
                     <label class="form-label">The mandate calls us to (check all that apply):</label>
-                    <div class="checkbox-group">
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="som1" value="Build with students and families">
-                            <label for="som1">Build with students and families, not just for them</label>
+                    <div class="checkbox-group" style="display: flex; flex-direction: column; gap: 0.75rem;">
+                        <div class="checkbox-item" style="display: flex; align-items: flex-start; padding: 0.75rem; background: var(--neutral-100); border-radius: 8px;">
+                            <input type="checkbox" id="som1" value="Build with students and families" style="margin-right: 0.75rem; margin-top: 0.25rem;">
+                            <label for="som1" style="cursor: pointer; flex: 1;">Build with students and families, not just for them</label>
                         </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="som2" value="Foster trust and belonging">
-                            <label for="som2">Foster trust and belonging in every school community</label>
+                        <div class="checkbox-item" style="display: flex; align-items: flex-start; padding: 0.75rem; background: var(--neutral-100); border-radius: 8px;">
+                            <input type="checkbox" id="som2" value="Foster trust and belonging" style="margin-right: 0.75rem; margin-top: 0.25rem;">
+                            <label for="som2" style="cursor: pointer; flex: 1;">Foster trust and belonging in every school community</label>
                         </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="som3" value="Bring learning to life">
-                            <label for="som3">Bring learning to life—hands-on, joyful, and relevant</label>
+                        <div class="checkbox-item" style="display: flex; align-items: flex-start; padding: 0.75rem; background: var(--neutral-100); border-radius: 8px;">
+                            <input type="checkbox" id="som3" value="Bring learning to life" style="margin-right: 0.75rem; margin-top: 0.25rem;">
+                            <label for="som3" style="cursor: pointer; flex: 1;">Bring learning to life—hands-on, joyful, and relevant</label>
                         </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="som4" value="Ensure achievement and growth">
-                            <label for="som4">Ensure every student achieves and grows through powerful learning</label>
+                        <div class="checkbox-item" style="display: flex; align-items: flex-start; padding: 0.75rem; background: var(--neutral-100); border-radius: 8px;">
+                            <input type="checkbox" id="som4" value="Ensure achievement and growth" style="margin-right: 0.75rem; margin-top: 0.25rem;">
+                            <label for="som4" style="cursor: pointer; flex: 1;">Ensure every student achieves and grows through powerful learning</label>
                         </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="som5" value="High expectations">
-                            <label for="som5">Hold high expectations for all</label>
+                        <div class="checkbox-item" style="display: flex; align-items: flex-start; padding: 0.75rem; background: var(--neutral-100); border-radius: 8px;">
+                            <input type="checkbox" id="som5" value="High expectations" style="margin-right: 0.75rem; margin-top: 0.25rem;">
+                            <label for="som5" style="cursor: pointer; flex: 1;">Hold high expectations for all</label>
                         </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="som6" value="Adapt with intention">
-                            <label for="som6">Adapt with intention as the world changes</label>
+                        <div class="checkbox-item" style="display: flex; align-items: flex-start; padding: 0.75rem; background: var(--neutral-100); border-radius: 8px;">
+                            <input type="checkbox" id="som6" value="Adapt with intention" style="margin-right: 0.75rem; margin-top: 0.25rem;">
+                            <label for="som6" style="cursor: pointer; flex: 1;">Adapt with intention as the world changes</label>
                         </div>
                     </div>
                 </div>
@@ -1582,6 +1691,7 @@
             what: '',
             when: '',
             howMuch: '',
+            resourceContext: '',
             refined: '',
             metrics: [],
             somAlignment: [],
@@ -1599,8 +1709,15 @@
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             loadProgress();
-            updateProgressBar();
         });
+
+        // Start Guide
+        function startGuide() {
+            document.getElementById('welcomePage').style.display = 'none';
+            document.getElementById('progressContainer').classList.add('show');
+            document.getElementById('mainContent').style.display = 'block';
+            updateProgressBar();
+        }
 
         // Navigation
         function nextStep() {
@@ -1645,55 +1762,20 @@
             });
             document.querySelector(`.step-indicator[data-step="${step}"]`).classList.add('active');
             
+            // Show current hypothesis in Step 2
+            if (step === 2 && hypothesisData.idea) {
+                document.getElementById('step2CurrentIdea').style.display = 'block';
+                document.getElementById('step2IdeaText').textContent = hypothesisData.idea;
+            }
+            
+            // Show current hypothesis in Step 3
+            if (step === 3 && hypothesisData.refined) {
+                document.getElementById('step3CurrentHypothesis').style.display = 'block';
+                document.getElementById('step3HypothesisText').textContent = hypothesisData.refined;
+            }
+            
             updateProgressBar();
             window.scrollTo(0, 0);
-        }
-
-        // Metric suggestion function
-        let metricCount = 0;
-        const metricSuggestions = {};
-        
-        function suggestMetricValues(metricId, baseline, target) {
-            const checkbox = document.getElementById(metricId);
-            const metricName = checkbox.value;
-            
-            if (checkbox.checked) {
-                metricCount++;
-                metricSuggestions[metricId] = { name: metricName, baseline, target };
-                
-                // Auto-populate the first 3 metrics
-                if (metricCount <= 3) {
-                    document.getElementById(`metric${metricCount}Baseline`).value = baseline;
-                    document.getElementById(`metric${metricCount}Target`).value = target;
-                }
-                
-                // Show suggestions box
-                const suggestionsDiv = document.getElementById('selectedMetricsDisplay');
-                const suggestionsText = document.getElementById('metricSuggestions');
-                suggestionsDiv.style.display = 'block';
-                
-                // Update suggestions text
-                let suggestionsHTML = '';
-                Object.values(metricSuggestions).forEach(metric => {
-                    suggestionsHTML += `• ${metric.name}: ${metric.baseline} → ${metric.target}<br>`;
-                });
-                suggestionsText.innerHTML = suggestionsHTML;
-            } else {
-                delete metricSuggestions[metricId];
-                metricCount = Math.max(0, metricCount - 1);
-                
-                // Update suggestions display
-                if (Object.keys(metricSuggestions).length === 0) {
-                    document.getElementById('selectedMetricsDisplay').style.display = 'none';
-                } else {
-                    const suggestionsText = document.getElementById('metricSuggestions');
-                    let suggestionsHTML = '';
-                    Object.values(metricSuggestions).forEach(metric => {
-                        suggestionsHTML += `• ${metric.name}: ${metric.baseline} → ${metric.target}<br>`;
-                    });
-                    suggestionsText.innerHTML = suggestionsHTML;
-                }
-            }
         }
 
         function markStepCompleted(step) {
@@ -1703,6 +1785,102 @@
         function updateProgressBar() {
             const progress = ((currentStep - 1) / (totalSteps - 1)) * 100;
             document.getElementById('progressFill').style.width = `${progress}%`;
+        }
+
+        // Update Step 2 Hypothesis
+        function updateStep2Hypothesis() {
+            const who = document.getElementById('who').value;
+            const what = document.getElementById('what').value;
+            const when = document.getElementById('when').value;
+            const howMuch = document.getElementById('howMuch').value;
+            const resourceContext = document.getElementById('resourceContext').value;
+            
+            if (!who || !what || !when) {
+                alert('Please fill in WHO, WHAT, and WHEN to see your updated hypothesis.');
+                return;
+            }
+            
+            let synthesized = `During ${when}, ${who} will ${what}`;
+            
+            if (howMuch) {
+                const resourceMap = {
+                    'none': 'with no additional cost',
+                    'minimal': 'with minimal cost (<$500)',
+                    'moderate': 'with moderate cost ($500-$5000)',
+                    'newStaff': 'requiring new staff time',
+                    'existing': 'using existing structures'
+                };
+                synthesized += ` ${resourceMap[howMuch]}`;
+            }
+            
+            if (resourceContext) {
+                synthesized += ` (${resourceContext})`;
+            }
+            
+            hypothesisData.refined = synthesized;
+            
+            document.getElementById('synthesizedText').textContent = synthesized;
+            document.getElementById('step2Synthesis').classList.add('show');
+        }
+
+        // Metric suggestion function
+        let metricSelections = {};
+        
+        function suggestMetricValues(metricId, baseline, target) {
+            const checkbox = document.getElementById(metricId);
+            const metricName = checkbox.value;
+            
+            if (checkbox.checked) {
+                metricSelections[metricId] = { name: metricName, baseline, target };
+            } else {
+                delete metricSelections[metricId];
+            }
+            
+            updateMetricInputs();
+        }
+
+        function updateMetricInputs() {
+            const container = document.getElementById('metricsInputContainer');
+            container.innerHTML = '';
+            
+            const selectedMetrics = Object.values(metricSelections);
+            
+            // Add custom metrics from "other" fields
+            ['quickOther', 'mediumOther'].forEach(id => {
+                const value = document.getElementById(id).value;
+                if (value.trim()) {
+                    selectedMetrics.push({ name: value, baseline: '', target: '' });
+                }
+            });
+            
+            // Create input rows for each metric
+            selectedMetrics.forEach((metric, index) => {
+                const row = document.createElement('div');
+                row.className = 'metric-input-row';
+                row.innerHTML = `
+                    <label>${metric.name}:</label>
+                    <input type="text" class="metric-value-input" placeholder="Baseline" id="metric${index + 1}Baseline" value="${metric.baseline}">
+                    <input type="text" class="metric-value-input" placeholder="Target" id="metric${index + 1}Target" value="${metric.target}">
+                `;
+                container.appendChild(row);
+            });
+            
+            // Show suggestions if metrics selected
+            if (selectedMetrics.length > 0) {
+                const suggestionsDiv = document.getElementById('selectedMetricsDisplay');
+                const suggestionsText = document.getElementById('metricSuggestions');
+                suggestionsDiv.style.display = 'block';
+                
+                let suggestionsHTML = '';
+                selectedMetrics.forEach(metric => {
+                    if (metric.baseline && metric.target) {
+                        suggestionsHTML += `• ${metric.name}: ${metric.baseline} → ${metric.target}<br>`;
+                    }
+                });
+                suggestionsText.innerHTML = suggestionsHTML || 'Select metrics to see suggested values';
+            } else {
+                document.getElementById('selectedMetricsDisplay').style.display = 'none';
+            }
         }
 
         // Save/Load Progress
@@ -1717,7 +1895,7 @@
                 hypothesisData.what = document.getElementById('what').value;
                 hypothesisData.when = document.getElementById('when').value;
                 hypothesisData.howMuch = document.getElementById('howMuch').value;
-                hypothesisData.refined = document.getElementById('refinedHypothesis').value;
+                hypothesisData.resourceContext = document.getElementById('resourceContext').value;
             }
             // Save Step 3
             else if (currentStep === 3) {
@@ -1754,6 +1932,7 @@
                 if (hypothesisData.what) document.getElementById('what').value = hypothesisData.what;
                 if (hypothesisData.when) document.getElementById('when').value = hypothesisData.when;
                 if (hypothesisData.howMuch) document.getElementById('howMuch').value = hypothesisData.howMuch;
+                if (hypothesisData.resourceContext) document.getElementById('resourceContext').value = hypothesisData.resourceContext;
                 if (hypothesisData.refined) document.getElementById('refinedHypothesis').value = hypothesisData.refined;
                 if (hypothesisData.regionalGoal) document.getElementById('regionalGoal').value = hypothesisData.regionalGoal;
                 if (hypothesisData.alignmentExplanation) document.getElementById('alignmentExplanation').value = hypothesisData.alignmentExplanation;
@@ -1761,39 +1940,9 @@
         }
 
         // Toggle Functions
-        function toggleCategory(id) {
-            const content = document.getElementById(id);
-            const icon = content.previousElementSibling.querySelector('.category-icon');
-            
-            if (content.classList.contains('active')) {
-                content.classList.remove('active');
-                icon.textContent = '▼';
-            } else {
-                content.classList.add('active');
-                icon.textContent = '▲';
-            }
-        }
-
         function toggleExample(id) {
             const example = document.getElementById(id);
             example.classList.toggle('show');
-        }
-
-        // Feasibility Check
-        function updateFeasibility() {
-            const checks = ['existing', 'cost', 'value', 'staff'];
-            const checkedCount = checks.filter(id => document.getElementById(id).checked).length;
-            const result = document.getElementById('feasibilityResult');
-            
-            result.classList.add('show');
-            
-            if (checkedCount >= 3) {
-                result.className = 'feasibility-result show good';
-                result.textContent = '✓ Good feasibility! Your idea appears implementable with current resources.';
-            } else {
-                result.className = 'feasibility-result show warning';
-                result.textContent = '⚠ Consider simplifying your idea. ' + (4 - checkedCount) + ' feasibility concerns identified.';
-            }
         }
 
         // Scoring Functions
@@ -1830,36 +1979,20 @@
         // Gather Functions
         function gatherSelectedMetrics() {
             const metrics = [];
+            const container = document.getElementById('metricsInputContainer');
+            const rows = container.querySelectorAll('.metric-input-row');
             
-            // Check all metric checkboxes
-            const checkboxes = document.querySelectorAll('#step3 input[type="checkbox"]:checked');
-            checkboxes.forEach(checkbox => {
+            rows.forEach((row, index) => {
+                const label = row.querySelector('label').textContent.replace(':', '');
+                const baseline = row.querySelector(`#metric${index + 1}Baseline`).value;
+                const target = row.querySelector(`#metric${index + 1}Target`).value;
+                
                 metrics.push({
-                    name: checkbox.value,
-                    baseline: '',
-                    target: ''
+                    name: label,
+                    baseline: baseline,
+                    target: target
                 });
             });
-            
-            // Add other metrics
-            ['quickOther', 'mediumOther', 'impactOther'].forEach(id => {
-                const value = document.getElementById(id).value;
-                if (value) {
-                    metrics.push({
-                        name: value,
-                        baseline: '',
-                        target: ''
-                    });
-                }
-            });
-            
-            // Add baseline/target values
-            for (let i = 1; i <= 3; i++) {
-                if (metrics[i-1]) {
-                    metrics[i-1].baseline = document.getElementById(`metric${i}Baseline`).value;
-                    metrics[i-1].target = document.getElementById(`metric${i}Target`).value;
-                }
-            }
             
             return metrics;
         }
@@ -1881,14 +2014,14 @@
             
             const ifStatement = hypothesisData.refined || hypothesisData.idea || '[No hypothesis idea provided]';
             
-            const metrics = hypothesisData.metrics.slice(0, 3).map(m => {
+            const metrics = hypothesisData.metrics.map(m => {
                 if (m.baseline && m.target) {
                     return `${m.name} (${m.baseline} → ${m.target})`;
                 }
                 return m.name;
             }).join(', ') || '[No metrics selected]';
             
-            const somGoal = hypothesisData.somAlignment[0] || '[No SOM alignment selected]';
+            const somGoals = hypothesisData.somAlignment.join(', ') || '[No SOM alignment selected]';
             const regionalGoal = hypothesisData.regionalGoal || '[No regional goal selected]';
             const explanation = hypothesisData.alignmentExplanation || '[No explanation provided]';
             
@@ -1898,13 +2031,23 @@
                              hypothesisData.scores.teacherBuyIn + 
                              hypothesisData.scores.staffBuyIn;
             
+            // Get the text for regional goal
+            let regionalGoalText = '';
+            const regionalSelect = document.getElementById('regionalGoal');
+            if (regionalSelect && hypothesisData.regionalGoal) {
+                const selectedOption = regionalSelect.querySelector(`option[value="${hypothesisData.regionalGoal}"]`);
+                if (selectedOption) {
+                    regionalGoalText = selectedOption.textContent;
+                }
+            }
+            
             const finalText = `PTPE Hypothesis - ${new Date().toLocaleDateString()}
 
 IF we ${ifStatement}
 
 THEN we will see ${metrics}
 
-advancing our ${somGoal} and ${regionalGoal} by ${explanation}
+advancing our SOM goal of "${somGoals}" and supporting ${regionalGoalText || regionalGoal} by ${explanation}
 
 Scores: ${totalScore}/25
 - Implementation: ${hypothesisData.scores.implementation}/5
@@ -2020,6 +2163,9 @@ Scores: ${totalScore}/25
                     saveCurrentStep();
                     currentStep = step;
                     showStep(currentStep);
+                    if (currentStep === 6) {
+                        generateFinalHypothesis();
+                    }
                 }
             });
         });
