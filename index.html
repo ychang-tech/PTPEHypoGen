@@ -1339,6 +1339,13 @@
                     <div class="current-hypothesis-text" id="step3HypothesisText"></div>
                 </div>
 
+                <button class="update-hypothesis-btn" onclick="showStep3Preview()" style="margin-bottom: 1rem;">Show Me the Updated Hypothesis with Metrics</button>
+                
+                <div class="synthesized-hypothesis" id="step3Preview" style="margin-bottom: 1.5rem;">
+                    <div class="form-label">Preview with Metrics:</div>
+                    <div id="step3PreviewText" style="margin-top: 0.5rem; color: var(--neutral-700); line-height: 1.6;"></div>
+                </div>
+
                 <button class="example-btn" onclick="toggleExample('example3')">
                     💡 Show Example
                 </button>
@@ -1433,9 +1440,7 @@
                     <div class="regional-goal-item">• Access to postsecondary workforce opportunities (CO, MI)</div>
                     <div class="regional-goal-item">• Dual enrollment and CTE participation rates (MI, NM)</div>
                     <div class="regional-goal-item">• Chronic absenteeism reduction (NM)</div>
-                    <div class="regional-goal-item">• Growth in 3rd grade literacy (IL)</div>
-                    <div class="regional-goal-item">• Growth in 8th grade math (IL)</div>
-                    <div class="regional-goal-item">• High school graduation rates (IL)</div>
+                    <div class="regional-goal-item">• Intervention for a group of intensive-status schools to raise student outcomes (IL)</div>
                     <div class="regional-goal-item">• 8th grade reading proficiency rates (MA)</div>
                 </div>
 
@@ -1485,30 +1490,35 @@
                     <label class="form-label">The mandate calls us to (check all that apply):</label>
                     <div class="checkbox-group" style="display: flex; flex-direction: column; gap: 0.75rem;">
                         <div class="checkbox-item" style="display: flex; align-items: flex-start; padding: 0.75rem; background: var(--neutral-100); border-radius: 8px;">
-                            <input type="checkbox" id="som1" value="Build with students and families" style="margin-right: 0.75rem; margin-top: 0.25rem;">
+                            <input type="checkbox" id="som1" value="Build with students and families, not just for them" style="margin-right: 0.75rem; margin-top: 0.25rem;">
                             <label for="som1" style="cursor: pointer; flex: 1;">Build with students and families, not just for them</label>
                         </div>
                         <div class="checkbox-item" style="display: flex; align-items: flex-start; padding: 0.75rem; background: var(--neutral-100); border-radius: 8px;">
-                            <input type="checkbox" id="som2" value="Foster trust and belonging" style="margin-right: 0.75rem; margin-top: 0.25rem;">
+                            <input type="checkbox" id="som2" value="Foster trust and belonging in every school community" style="margin-right: 0.75rem; margin-top: 0.25rem;">
                             <label for="som2" style="cursor: pointer; flex: 1;">Foster trust and belonging in every school community</label>
                         </div>
                         <div class="checkbox-item" style="display: flex; align-items: flex-start; padding: 0.75rem; background: var(--neutral-100); border-radius: 8px;">
-                            <input type="checkbox" id="som3" value="Bring learning to life" style="margin-right: 0.75rem; margin-top: 0.25rem;">
+                            <input type="checkbox" id="som3" value="Bring learning to life—hands-on, joyful, and relevant" style="margin-right: 0.75rem; margin-top: 0.25rem;">
                             <label for="som3" style="cursor: pointer; flex: 1;">Bring learning to life—hands-on, joyful, and relevant</label>
                         </div>
                         <div class="checkbox-item" style="display: flex; align-items: flex-start; padding: 0.75rem; background: var(--neutral-100); border-radius: 8px;">
-                            <input type="checkbox" id="som4" value="Ensure achievement and growth" style="margin-right: 0.75rem; margin-top: 0.25rem;">
+                            <input type="checkbox" id="som4" value="Ensure every student achieves and grows through powerful learning" style="margin-right: 0.75rem; margin-top: 0.25rem;">
                             <label for="som4" style="cursor: pointer; flex: 1;">Ensure every student achieves and grows through powerful learning</label>
                         </div>
                         <div class="checkbox-item" style="display: flex; align-items: flex-start; padding: 0.75rem; background: var(--neutral-100); border-radius: 8px;">
-                            <input type="checkbox" id="som5" value="High expectations" style="margin-right: 0.75rem; margin-top: 0.25rem;">
+                            <input type="checkbox" id="som5" value="Hold high expectations for all" style="margin-right: 0.75rem; margin-top: 0.25rem;">
                             <label for="som5" style="cursor: pointer; flex: 1;">Hold high expectations for all</label>
                         </div>
                         <div class="checkbox-item" style="display: flex; align-items: flex-start; padding: 0.75rem; background: var(--neutral-100); border-radius: 8px;">
-                            <input type="checkbox" id="som6" value="Adapt with intention" style="margin-right: 0.75rem; margin-top: 0.25rem;">
+                            <input type="checkbox" id="som6" value="Adapt with intention as the world changes" style="margin-right: 0.75rem; margin-top: 0.25rem;">
                             <label for="som6" style="cursor: pointer; flex: 1;">Adapt with intention as the world changes</label>
                         </div>
                     </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Describe how your hypothesis directly supports the SOM:</label>
+                    <textarea class="form-textarea" id="somExplanation" placeholder="Explain how your hypothesis advances the Student Opportunity Mandate goals selected above..."></textarea>
                 </div>
 
                 <div class="form-group">
@@ -1530,8 +1540,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Explain briefly how your hypothesis advances this goal:</label>
-                    <textarea class="form-textarea" id="alignmentExplanation" placeholder="Describe how your hypothesis directly supports the SOM and regional goal..."></textarea>
+                    <label class="form-label">Describe how your hypothesis supports the regional goal:</label>
+                    <textarea class="form-textarea" id="regionalExplanation" placeholder="Explain how your hypothesis advances the specific regional goal selected above..."></textarea>
                 </div>
 
                 <div class="navigation">
@@ -1695,8 +1705,9 @@
             refined: '',
             metrics: [],
             somAlignment: [],
+            somExplanation: '',
             regionalGoal: '',
-            alignmentExplanation: '',
+            regionalExplanation: '',
             scores: {
                 implementation: 3,
                 cost: 3,
@@ -1787,6 +1798,23 @@
             document.getElementById('progressFill').style.width = `${progress}%`;
         }
 
+        // Helper function to clean input for natural sentence flow
+        function cleanInput(text) {
+            if (!text) return '';
+            
+            // Trim whitespace
+            text = text.trim();
+            
+            // Check if first word is an acronym (all caps and 2+ letters)
+            const firstWord = text.split(' ')[0];
+            if (firstWord.length >= 2 && firstWord === firstWord.toUpperCase() && /^[A-Z]+$/.test(firstWord)) {
+                return text; // Keep acronyms as-is
+            }
+            
+            // Otherwise, lowercase the first letter for mid-sentence use
+            return text.charAt(0).toLowerCase() + text.slice(1);
+        }
+
         // Update Step 2 Hypothesis
         function updateStep2Hypothesis() {
             const who = document.getElementById('who').value;
@@ -1800,27 +1828,56 @@
                 return;
             }
             
-            let synthesized = `During ${when}, ${who} will ${what}`;
+            // Build a more natural sentence
+            let synthesized = '';
             
-            if (howMuch) {
-                const resourceMap = {
-                    'none': 'with no additional cost',
-                    'minimal': 'with minimal cost (<$500)',
-                    'moderate': 'with moderate cost ($500-$5000)',
-                    'newStaff': 'requiring new staff time',
-                    'existing': 'using existing structures'
-                };
-                synthesized += ` ${resourceMap[howMuch]}`;
+            // Handle "when" placement more naturally
+            const whenLower = cleanInput(when);
+            if (whenLower.includes('during') || whenLower.includes('throughout') || whenLower.includes('in') || whenLower.includes('at')) {
+                synthesized = `${when}, ${cleanInput(who)} will ${cleanInput(what)}`;
+            } else {
+                synthesized = `During ${whenLower}, ${cleanInput(who)} will ${cleanInput(what)}`;
             }
             
+            // Store resource context but don't add to hypothesis
             if (resourceContext) {
-                synthesized += ` (${resourceContext})`;
+                hypothesisData.resourceContext = resourceContext;
             }
             
             hypothesisData.refined = synthesized;
             
             document.getElementById('synthesizedText').textContent = synthesized;
             document.getElementById('step2Synthesis').classList.add('show');
+        }
+
+        // Show Step 3 Preview with metrics
+        function showStep3Preview() {
+            // Get current hypothesis from Step 2
+            const ifStatement = hypothesisData.refined || hypothesisData.idea || 'your action';
+            
+            // Gather current metrics
+            const currentMetrics = gatherSelectedMetrics();
+            let metricsText = '';
+            
+            if (currentMetrics.length > 0) {
+                const formattedMetrics = currentMetrics.map(m => {
+                    if (m.baseline && m.target) {
+                        return `• ${m.name}: ${m.baseline} → ${m.target}`;
+                    }
+                    return `• ${m.name}: [set baseline] → [set target]`;
+                });
+                metricsText = formattedMetrics.join('\n');
+            } else {
+                metricsText = '• [Select metrics above to see them here]';
+            }
+            
+            const previewText = `IF ${ifStatement},
+
+THEN we expect to see:
+${metricsText}`;
+            
+            document.getElementById('step3PreviewText').innerHTML = previewText.replace(/\n/g, '<br>');
+            document.getElementById('step3Preview').classList.add('show');
         }
 
         // Metric suggestion function
@@ -1904,8 +1961,9 @@
             // Save Step 4
             else if (currentStep === 4) {
                 hypothesisData.somAlignment = gatherSOMAlignment();
+                hypothesisData.somExplanation = document.getElementById('somExplanation').value;
                 hypothesisData.regionalGoal = document.getElementById('regionalGoal').value;
-                hypothesisData.alignmentExplanation = document.getElementById('alignmentExplanation').value;
+                hypothesisData.regionalExplanation = document.getElementById('regionalExplanation').value;
             }
             // Save Step 5
             else if (currentStep === 5) {
@@ -1933,9 +1991,9 @@
                 if (hypothesisData.when) document.getElementById('when').value = hypothesisData.when;
                 if (hypothesisData.howMuch) document.getElementById('howMuch').value = hypothesisData.howMuch;
                 if (hypothesisData.resourceContext) document.getElementById('resourceContext').value = hypothesisData.resourceContext;
-                if (hypothesisData.refined) document.getElementById('refinedHypothesis').value = hypothesisData.refined;
+                if (hypothesisData.somExplanation) document.getElementById('somExplanation').value = hypothesisData.somExplanation;
                 if (hypothesisData.regionalGoal) document.getElementById('regionalGoal').value = hypothesisData.regionalGoal;
-                if (hypothesisData.alignmentExplanation) document.getElementById('alignmentExplanation').value = hypothesisData.alignmentExplanation;
+                if (hypothesisData.regionalExplanation) document.getElementById('regionalExplanation').value = hypothesisData.regionalExplanation;
             }
         }
 
@@ -2012,49 +2070,91 @@
         function generateFinalHypothesis() {
             saveCurrentStep();
             
+            // Build IF statement components
             const ifStatement = hypothesisData.refined || hypothesisData.idea || '[No hypothesis idea provided]';
             
-            const metrics = hypothesisData.metrics.map(m => {
-                if (m.baseline && m.target) {
-                    return `${m.name} (${m.baseline} → ${m.target})`;
+            // Format metrics with bullet points
+            let metricsText = '';
+            if (hypothesisData.metrics && hypothesisData.metrics.length > 0) {
+                const formattedMetrics = hypothesisData.metrics.map(m => {
+                    if (m.baseline && m.target) {
+                        return `• ${m.name}: ${m.baseline} → ${m.target}`;
+                    }
+                    return `• ${m.name}: [baseline not set] → [target not set]`;
+                });
+                metricsText = formattedMetrics.join('\n');
+            } else {
+                metricsText = '• [No metrics selected]';
+            }
+            
+            // Format SOM alignment
+            let somAlignmentText = '';
+            if (hypothesisData.somAlignment && hypothesisData.somAlignment.length > 0) {
+                // Use the first selected SOM goal as primary
+                const primarySOM = hypothesisData.somAlignment[0];
+                somAlignmentText = `• SOM Alignment: Advancing the Student Opportunity Mandate to ${primarySOM.toLowerCase()}.`;
+                
+                // Add SOM explanation if provided
+                if (hypothesisData.somExplanation) {
+                    somAlignmentText += ` ${hypothesisData.somExplanation}`;
                 }
-                return m.name;
-            }).join(', ') || '[No metrics selected]';
+            } else {
+                somAlignmentText = '• SOM Alignment: [No SOM alignment selected]';
+            }
             
-            const somGoals = hypothesisData.somAlignment.join(', ') || '[No SOM alignment selected]';
-            const regionalGoal = hypothesisData.regionalGoal || '[No regional goal selected]';
-            const explanation = hypothesisData.alignmentExplanation || '[No explanation provided]';
+            // Format regional goal
+            let regionalGoalText = '';
+            if (hypothesisData.regionalGoal) {
+                const regionalSelect = document.getElementById('regionalGoal');
+                if (regionalSelect) {
+                    const selectedOption = regionalSelect.querySelector(`option[value="${hypothesisData.regionalGoal}"]`);
+                    if (selectedOption) {
+                        const fullText = selectedOption.textContent;
+                        // Extract the goal part after the state name
+                        const goalPart = fullText.substring(fullText.indexOf(':') + 1).trim();
+                        regionalGoalText = `• Regional Goal: Supporting ${hypothesisData.regionalGoal}'s goal to ${goalPart.charAt(0).toLowerCase() + goalPart.slice(1)}`;
+                        
+                        // Add regional explanation if provided
+                        if (hypothesisData.regionalExplanation) {
+                            regionalGoalText += ` ${hypothesisData.regionalExplanation}`;
+                        }
+                    }
+                }
+            } else {
+                regionalGoalText = '• Regional Goal: [No regional goal selected]';
+            }
             
+            // Calculate total score
             const totalScore = hypothesisData.scores.implementation + 
                              hypothesisData.scores.cost + 
                              hypothesisData.scores.innovation + 
                              hypothesisData.scores.teacherBuyIn + 
                              hypothesisData.scores.staffBuyIn;
             
-            // Get the text for regional goal
-            let regionalGoalText = '';
-            const regionalSelect = document.getElementById('regionalGoal');
-            if (regionalSelect && hypothesisData.regionalGoal) {
-                const selectedOption = regionalSelect.querySelector(`option[value="${hypothesisData.regionalGoal}"]`);
-                if (selectedOption) {
-                    regionalGoalText = selectedOption.textContent;
-                }
-            }
-            
+            // Create final hypothesis using new template
             const finalText = `PTPE Hypothesis - ${new Date().toLocaleDateString()}
 
-IF we ${ifStatement}
+IF ${ifStatement},
 
-THEN we will see ${metrics}
+THEN we expect to see:
+${metricsText}
 
-advancing our SOM goal of "${somGoals}" and supporting ${regionalGoalText || regionalGoal} by ${explanation}
+Strategic Alignment
+This advances our work by:
+${somAlignmentText}
+${regionalGoalText}
 
-Scores: ${totalScore}/25
-- Implementation: ${hypothesisData.scores.implementation}/5
-- Cost: ${hypothesisData.scores.cost}/5  
-- Innovation: ${hypothesisData.scores.innovation}/5
-- Teacher Buy-in: ${hypothesisData.scores.teacherBuyIn}/5
-- Staff Buy-in: ${hypothesisData.scores.staffBuyIn}/5`;
+Evaluation Scores: ${totalScore}/25
+• Easy Implementation: ${hypothesisData.scores.implementation}/5
+• Cost-Effective: ${hypothesisData.scores.cost}/5
+• Ambitious/Bold/Innovative: ${hypothesisData.scores.innovation}/5
+• High Buy-in from Teachers: ${hypothesisData.scores.teacherBuyIn}/5
+• High Buy-in from Staff: ${hypothesisData.scores.staffBuyIn}/5
+
+${totalScore >= 20 ? 'This hypothesis is strong and ready to pilot!' : 
+  totalScore >= 15 ? 'This is a good hypothesis that may benefit from minor refinements.' : 
+  totalScore >= 10 ? 'Consider revisiting this hypothesis to improve feasibility or impact.' : 
+  'This hypothesis needs significant rework before implementation.'}`;
             
             document.getElementById('finalHypothesisText').textContent = finalText;
             
@@ -2093,10 +2193,17 @@ Scores: ${totalScore}/25
                 });
             }
             
-            if (!hypothesisData.regionalGoal) {
+            if (!hypothesisData.somExplanation && hypothesisData.somAlignment.length > 0) {
                 skipped.push({
-                    field: 'Regional Goal',
-                    impact: 'Your hypothesis lacks connection to specific regional priorities.'
+                    field: 'SOM Explanation',
+                    impact: 'Your hypothesis lacks a clear explanation of how it advances the Student Opportunity Mandate.'
+                });
+            }
+            
+            if (!hypothesisData.regionalExplanation && hypothesisData.regionalGoal) {
+                skipped.push({
+                    field: 'Regional Goal Explanation',
+                    impact: 'Your hypothesis lacks explanation of how it supports the regional goal.'
                 });
             }
             
