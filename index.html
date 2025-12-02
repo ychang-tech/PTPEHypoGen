@@ -1031,6 +1031,10 @@
                 <p>The intention is that by using this tool, we can ground our next phase in our Student Opportunity Mandate (SOM) and the Regional Student Outcome Goals with testable ideas and clear metrics that will pave the way for further next steps.</p>
                 
                 <p>This interactive guide will walk you through six steps to develop a comprehensive hypothesis that aligns with our organizational goals and can be tested in your region.</p>
+                
+                <div style="background: rgba(255, 193, 7, 0.1); border-left: 3px solid var(--warning); padding: 1rem; border-radius: 6px; margin-top: 1.5rem;">
+                    <strong>📝 Important Note:</strong> All fields and selections in this tool are optional. You don't need to fill in or select something at every step. Skip any sections that don't apply to your hypothesis or context. The tool will help you identify what was skipped at the end and how it affects your final hypothesis.
+                </div>
             </div>
             
             <button class="welcome-start-btn" onclick="startGuide()">Start Building Your Hypothesis</button>
@@ -1083,6 +1087,9 @@
                 </h2>
                 <p class="step-description">
                     Start by identifying patterns from the pre-work responses. What specific actions or changes could we test based on what teachers told us they need?
+                    <span style="display: block; margin-top: 0.5rem; font-size: 0.9rem; color: var(--neutral-500); font-style: italic;">
+                        Remember: You can skip any fields or selections that don't apply to your hypothesis.
+                    </span>
                 </p>
 
                 <button class="example-btn" onclick="toggleExample('example1')">
@@ -1102,10 +1109,10 @@
                     <div class="idea-category">
                         <div class="idea-category-title">1. Connector & Relationship Builder</div>
                         <ul class="idea-list">
-                            <li>Require 3 family empathy interviews during programming to inform priorities</li>
-                            <li>Create parent/student advisory councils that meet monthly to review progress</li>
-                            <li>Partner with 2+ non-teacher stakeholders (ex. counselors, literacy coach, social worker, school principal) for each cohort</li>
-                            <li>Conduct structured listening sessions with 3 students and 3 parents during programming</li>
+                            <li>Require empathy interviews during programming to inform priorities</li>
+                            <li>Create parent/student advisory councils that meet periodically to review progress</li>
+                            <li>Partner with non-teacher stakeholders (ex. counselors, literacy coach, social worker, school principal) for each cohort</li>
+                            <li>Conduct structured listening sessions with students and parents during programming</li>
                             <li>Document and present community partnership metrics at each convening</li>
                         </ul>
                     </div>
@@ -1424,6 +1431,10 @@
                             <div class="metric-option">
                                 <input type="checkbox" id="behaviorChanges" value="Behavior changes documented" onchange="suggestMetricValues('behaviorChanges', 'Rarely', 'Frequently')">
                                 <label for="behaviorChanges">Behavior changes documented</label>
+                            </div>
+                            <div class="metric-option">
+                                <input type="checkbox" id="programSharing" value="Cross-program best practice sharing" onchange="suggestMetricValues('programSharing', '0 practices shared', '5+ practices replicated')">
+                                <label for="programSharing">Cross-program best practice sharing (programs share successful elements for replication)</label>
                             </div>
                             <input type="text" class="other-metric-input" placeholder="Other medium-term metric..." id="mediumOther">
                         </div>
@@ -2087,16 +2098,15 @@ ${metricsText}`;
                 metricsText = '• [No metrics selected]';
             }
             
-            // Format SOM alignment
+            // Format SOM alignment with ALL selected items as bullets
             let somAlignmentText = '';
             if (hypothesisData.somAlignment && hypothesisData.somAlignment.length > 0) {
-                // Use the first selected SOM goal as primary
-                const primarySOM = hypothesisData.somAlignment[0];
-                somAlignmentText = `• SOM Alignment: Advancing the Student Opportunity Mandate to ${primarySOM.toLowerCase()}.`;
+                const somBullets = hypothesisData.somAlignment.map(goal => `  • ${goal}`).join('\n');
+                somAlignmentText = `• SOM Alignment: Advancing the Student Opportunity Mandate to:\n${somBullets}`;
                 
                 // Add SOM explanation if provided
                 if (hypothesisData.somExplanation) {
-                    somAlignmentText += ` ${hypothesisData.somExplanation}`;
+                    somAlignmentText += `\n  ${hypothesisData.somExplanation}`;
                 }
             } else {
                 somAlignmentText = '• SOM Alignment: [No SOM alignment selected]';
@@ -2131,7 +2141,7 @@ ${metricsText}`;
                              hypothesisData.scores.teacherBuyIn + 
                              hypothesisData.scores.staffBuyIn;
             
-            // Create final hypothesis using new template
+            // Create final hypothesis using new template WITHOUT qualitative feedback
             const finalText = `PTPE Hypothesis - ${new Date().toLocaleDateString()}
 
 IF ${ifStatement},
@@ -2149,12 +2159,7 @@ Evaluation Scores: ${totalScore}/25
 • Cost-Effective: ${hypothesisData.scores.cost}/5
 • Ambitious/Bold/Innovative: ${hypothesisData.scores.innovation}/5
 • High Buy-in from Teachers: ${hypothesisData.scores.teacherBuyIn}/5
-• High Buy-in from Staff: ${hypothesisData.scores.staffBuyIn}/5
-
-${totalScore >= 20 ? 'This hypothesis is strong and ready to pilot!' : 
-  totalScore >= 15 ? 'This is a good hypothesis that may benefit from minor refinements.' : 
-  totalScore >= 10 ? 'Consider revisiting this hypothesis to improve feasibility or impact.' : 
-  'This hypothesis needs significant rework before implementation.'}`;
+• High Buy-in from Staff: ${hypothesisData.scores.staffBuyIn}/5`;
             
             document.getElementById('finalHypothesisText').textContent = finalText;
             
